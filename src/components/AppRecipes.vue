@@ -28,6 +28,7 @@
                 <th scope="col">Steps</th>
                 <th scope="col">Rating</th>
                 <th scope="col">Favourite</th>
+                <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -37,6 +38,22 @@
                 <td>{{ recipe.steps }}</td>
                 <td>{{ recipe.ratings }}</td>
                 <td>{{ recipe.favourite }}</td>
+                <td style="display: flex; gap: 20px;">
+
+                  <button
+                    type="button"
+                    class="btn btn-success btn-sm"
+                    v-b-modal.recipe-modal
+                  >
+                    Edit
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-success btn-sm"
+                    v-b-modal.recipe-modal
+                  >
+                    Delete
+                  </button></td>
                 <td>
                   <!--<span
                     v-if="account.status == 'Active'"
