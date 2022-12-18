@@ -8,6 +8,14 @@ on:
     branches:
       - main
   workflow_dispatch:
+  
+env:
+  ENV: ghci
+  DBHOST: secrets.DBHOST
+  DBUSER: secrets.DBUSER
+  DBPASS: secrets.DBPASS
+  DBNAME: secrets.DBNAME
+
 
 jobs:
   build:
