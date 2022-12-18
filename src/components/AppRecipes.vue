@@ -17,7 +17,7 @@
             class="btn btn-success btn-sm"
             v-b-modal.recipe-modal
           >
-            Create Account
+            Create Recipe
           </button>
           <br /><br />
           <table class="table table-hover">
@@ -36,6 +36,7 @@
                 <td>{{ recipe.ingredients }}</td>
                 <td>{{ recipe.steps }}</td>
                 <td>{{ recipe.ratings }}</td>
+                <td>{{ recipe.favourite }}</td>
                 <td>
                   <!--<span
                     v-if="account.status == 'Active'"
@@ -193,7 +194,7 @@ export default {
   name: "AppRecipes",
   data() {
     return {
-      accounts: [],
+      recipes: [],
       createRecipeForm: {
         name: "",
         ingredients: "",
@@ -253,7 +254,7 @@ export default {
       axios
         .put(path, payload)
         .then((response) => {
-          this.RESTgetAccounts();
+          this.RESTgetRecipes();
           // For message alert
           this.message = "Recipe Updated succesfully!";
           // To actually show the message
@@ -275,7 +276,7 @@ export default {
       axios
         .delete(path)
         .then((response) => {
-          this.RESTgetAccounts();
+          this.RESTgetRecipes();
           // For message alert
           this.message = "Recipe Deleted succesfully!";
           // To actually show the message
@@ -324,7 +325,7 @@ export default {
       const payload = {
         name: this.editRecipeForm.name,
       };
-      this.RESTupdateAccount(payload, this.editRecipeForm.id);
+      this.RESTupdateRecipe(payload, this.editRecipeForm.id);
       this.initForm();
     },
 
