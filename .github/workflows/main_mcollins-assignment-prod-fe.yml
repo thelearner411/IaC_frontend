@@ -41,6 +41,14 @@ jobs:
           name: node-app
           path: dist/
 
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        
+      - name: Test with pytest
+        run: |
+          python -m pytest --cov=recipes_api -v
+
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
