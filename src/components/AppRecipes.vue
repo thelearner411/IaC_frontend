@@ -35,7 +35,7 @@
                 <td>{{ recipe.name }}</td>
                 <td>{{ recipe.ingredients }}</td>
                 <td>{{ recipe.steps }}</td>
-                <td>{{ recipe.ratings }}</td>
+                <td>{{ recipe.rating }}</td>
                 <td>{{ recipe.favourite }}</td>
                 <td>
                   <!--<span
@@ -124,7 +124,6 @@
             >
             </b-form-input>
           </b-form-group>
-
           <b-button type="submit" variant="outline-info">Submit</b-button>
         </b-form>
       </b-modal>
@@ -168,7 +167,7 @@
           </b-form-group>
           <b-form-group
             id="form-edit-steps-group"
-            label="Stpes"
+            label="Steps"
             label-for="form-edit-steps-input"
           >
             <b-form-input
@@ -179,6 +178,33 @@
               required
             >
             </b-form-input>
+          </b-form-group>
+          <b-form-group
+            id="form-rating-group"
+            label="Rating:"
+            label-for="form-rating-input"
+          >
+            <b-form-input
+              id="form-rating-input"
+              type="number"
+              v-model.number="editRecipeForm.rating"
+              placeholder="Rating"
+              required
+            >
+            </b-form-input>
+          </b-form-group>
+          <b-form-group
+            id="form-favourite-group"
+            label="Favourite:"
+            label-for="form-favourite-input"
+          >
+            <b-form-checkbox
+              id="form-favourite-input"
+              type="checkbox"
+              v-model="editRecipeForm.favourite"
+              required
+            >
+            </b-form-checkbox>
           </b-form-group>
           <b-button type="submit" variant="outline-info">Update</b-button>
         </b-form>
@@ -303,6 +329,9 @@ export default {
       this.createRecipeForm.steps = "";
       this.editRecipeForm.id = "";
       this.editRecipeForm.name = "";
+      this.editRecipeForm.ingredients= "";
+      this.editRecipeForm.rating = "";
+      this.editRecipeForm.favourite = "";
     },
 
     // Handle submit event for create recipe
