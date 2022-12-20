@@ -124,6 +124,35 @@
             >
             </b-form-input>
           </b-form-group>
+          <b-form-group
+            id="form-rating-group"
+            label="Rating:"
+            label-for="form-rating-input"
+          >
+            <b-form-input
+              id="form-rating-input"
+              min=1
+              max=5
+              type="number"
+              v-model.number="createRecipeForm.rating"
+              placeholder="Rating"
+              required
+            >
+            </b-form-input>
+          </b-form-group>
+          <b-form-group
+            id="form-favourite-group"
+            label="Favourite:"
+            label-for="form-favourite-input"
+          >
+            <b-form-checkbox
+              id="form-favourite-input"
+              type="checkbox"
+              v-model="createRecipeForm.favourite"
+              required
+            >
+            </b-form-checkbox>
+          </b-form-group>
           <b-button type="submit" variant="outline-info">Submit</b-button>
         </b-form>
       </b-modal>
@@ -180,12 +209,14 @@
             </b-form-input>
           </b-form-group>
           <b-form-group
-            id="form-rating-group"
+            id="form-edit-rating-group"
             label="Rating:"
-            label-for="form-rating-input"
+            label-for="form-edit-rating-input"
           >
             <b-form-input
-              id="form-rating-input"
+              id="form-edit-rating-input"
+              min=1
+              max=5
               type="number"
               v-model.number="editRecipeForm.rating"
               placeholder="Rating"
@@ -194,12 +225,12 @@
             </b-form-input>
           </b-form-group>
           <b-form-group
-            id="form-favourite-group"
+            id="form-edit-favourite-group"
             label="Favourite:"
-            label-for="form-favourite-input"
+            label-for="form-edit-favourite-input"
           >
             <b-form-checkbox
-              id="form-favourite-input"
+              id="form-edit-favourite-input"
               type="checkbox"
               v-model="editRecipeForm.favourite"
               required
@@ -327,6 +358,8 @@ export default {
       this.createRecipeForm.name = "";
       this.createRecipeForm.ingredients = "";
       this.createRecipeForm.steps = "";
+      this.createRecipeForm.rating = "";
+      this.createRecipeForm.favourite = "";
       this.editRecipeForm.id = "";
       this.editRecipeForm.name = "";
       this.editRecipeForm.ingredients= "";
@@ -342,6 +375,8 @@ export default {
         name: this.createRecipeForm.name,
         ingredients: this.createRecipeForm.ingredients,
         steps: this.createRecipeForm.steps,
+        rating: this.createRecipeForm.rating,
+        favourite: this.createRecipeForm.favourite,
       };
       this.RESTcreateRecipe(payload);
       this.initForm();
