@@ -38,32 +38,7 @@
                 <td>{{ recipe.steps }}</td>
                 <td>{{ recipe.rating }}</td>
                 <td>{{ recipe.favourite }}</td>
-                <td style="display: flex; gap: 20px;">
-
-                  <button
-                    type="button"
-                    class="btn btn-success btn-sm"
-                    v-b-modal.recipe-modal
-                  >
-                    Edit
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-success btn-sm"
-                    v-b-modal.recipe-modal
-                  >
-                    Delete
-                  </button></td>
-                <td>
-                  <!--<span
-                    v-if="account.status == 'Active'"
-                    class="badge badge-success"
-                    >{{ account.status }}</span
-                  >
-                  <span v-else class="badge badge-danger">{{
-                    account.status
-                  }}</span>-->
-                </td>
+              
                 <td>
                   <div class="btn-group" role="group">
                     <button
@@ -198,7 +173,7 @@
             </b-form-input>
           </b-form-group>
           <b-form-group
-            id="form-edit-name-group"
+            id="form-edit-ingredients-group"
             label="Ingredients:"
             label-for="form-edit-ingredients-input"
           >
@@ -380,6 +355,7 @@ export default {
       this.editRecipeForm.id = "";
       this.editRecipeForm.name = "";
       this.editRecipeForm.ingredients= "";
+      this.editRecipeForm.steps= "";
       this.editRecipeForm.rating = "";
       this.editRecipeForm.favourite = "";
     },
@@ -405,6 +381,10 @@ export default {
       this.$refs.editRecipeModal.hide(); //hide the modal when submitted
       const payload = {
         name: this.editRecipeForm.name,
+        ingredients: this.editRecipeForm.ingredients,
+        steps: this.editRecipeForm.steps,
+        rating: this.editRecipeForm.rating,
+        favourite: this.editRecipeForm.favourite,
       };
       this.RESTupdateRecipe(payload, this.editRecipeForm.id);
       this.initForm();
