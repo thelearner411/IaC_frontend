@@ -38,32 +38,6 @@
                 <td>{{ recipe.steps }}</td>
                 <td>{{ recipe.rating }}</td>
                 <td>{{ recipe.favourite }}</td>
-                <td style="display: flex; gap: 20px;">
-
-                  <button
-                    type="button"
-                    class="btn btn-success btn-sm"
-                    v-b-modal.recipe-modal
-                  >
-                    Edit
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-success btn-sm"
-                    v-b-modal.recipe-modal
-                  >
-                    Delete
-                  </button></td>
-                <td>
-                  <!--<span
-                    v-if="account.status == 'Active'"
-                    class="badge badge-success"
-                    >{{ account.status }}</span
-                  >
-                  <span v-else class="badge badge-danger">{{
-                    account.status
-                  }}</span>-->
-                </td>
                 <td>
                   <div class="btn-group" role="group">
                     <button
@@ -204,6 +178,8 @@
             <b-form-input
               id="form-rating-input"
               type="number"
+              min=1
+              max=5
               v-model.number="editRecipeForm.rating"
               placeholder="Rating"
               required
@@ -370,6 +346,10 @@ export default {
       this.$refs.editRecipeModal.hide(); //hide the modal when submitted
       const payload = {
         name: this.editRecipeForm.name,
+        ingredients: this.editRecipeForm.ingredients,
+        steps: this.editRecipeForm.steps,
+        rating: this.editRecipeForm.rating,
+        favourite: this.editRecipeForm.favourite,
       };
       this.RESTupdateRecipe(payload, this.editRecipeForm.id);
       this.initForm();
